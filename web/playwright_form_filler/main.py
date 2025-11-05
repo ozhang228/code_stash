@@ -1,5 +1,7 @@
 import argparse
+import json
 
+from playwright.sync_api import sync_playwright
 from pydantic import BaseModel
 
 
@@ -24,9 +26,38 @@ def parse_arguments() -> Arguments:
     return Arguments(config_path=namespace.config_file)
 
 
+FieldSelector = str
+FieldValue = str
+
+
+class Step(BaseModel):
+    fields: dict[FieldSelector, FieldValue]
+
+
+class Config(BaseModel):
+    page_url: str
+    steps: list[Step]
+
+
 def main():
-    print(parse_arguments())
-    pass
+    args = parse_arguments()
+
+    with open(args.config_path, "r") as f:
+        config = Config.model_validate(json.load(f))
+
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False)
+        page = browser.new_page()
+
+        page.goto(config.page_url)
+
+        # getting to the first page of the form
+        page.pause()
+
+        for step in config.steps:
+            for selector, value in step.fields.items():
+                page.fill(selector, value)
+            page.pause()
 
 
 if __name__ == "__main__":
