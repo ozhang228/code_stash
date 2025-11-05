@@ -56,7 +56,27 @@ def main():
 
         for step in config.steps:
             for selector, value in step.fields.items():
-                page.fill(selector, value)
+                element = page.query_selector(selector)
+
+                if not element:
+                    print(f"Could not find element with selector {selector}")
+                    continue
+
+                element_type = element.evaluate("el => el.type")
+                match element_type:
+                    case "select":
+                        element.select_option(value)
+                    case "radio":
+                        element.check()
+                    case "checkbox":
+                        element.check()
+                    case "text":
+                        page.fill(selector, value)
+                    case "textarea":
+                        page.fill(selector, value)
+                    case _:
+                        assert False, f"Unsupported element type {element.type}"
+
             page.pause()
 
 

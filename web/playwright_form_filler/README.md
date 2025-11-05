@@ -57,5 +57,6 @@ The URL of the form page to be autofilled.
 An array of step objects. After each step, the script pauses to allow manual review or navigation before continuing.
 
   - `fields`
-  A collection of key-value pairs where the key is a CSS selector and the value is the text to input.
+  A collection of key-value pairs where the key is a CSS selector and the value is the text to input. An exception to this is checkboxes and radios where the value will be ignored as the presence of the field indicates a check.
+  
 
