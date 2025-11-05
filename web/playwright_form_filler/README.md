@@ -1,8 +1,8 @@
 # Playwright Form Filler
 
-Tired of filling out forms all day? Have a really long multi-page form that takes ages to fill out and test (looking at you kyc.cumberland.io/onboard-entity)?
+Tired of manually filling out endless forms? Whether you’re testing long multi-page onboarding flows or just want to save time, this tool has you covered.
 
-Lucky for you, now you can write down your form declaratively at `config.json` and have it autofill.
+Simply describe your desired form inputs in a configuration file, and the script will automatically fill them in for you using Playwright, all while keeping you in control. You can pause between steps, inspect the page, and continue when ready.
 
 --- 
 
