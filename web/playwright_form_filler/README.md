@@ -48,7 +48,7 @@ make run
 ```
 
 
-- Configuration Parameters
+### Configuration Parameters
 
 - `page_url`
 The URL of the form page to be autofilled.
