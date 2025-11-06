@@ -25,38 +25,13 @@ make run
 
 ## Configuration
 
-- Example configuration file
+- configured using `config.py` which exports a `config` variable which has the following parameters
 
-```json
-{
-  "page_url": "http://localhost:3000/form.html",
-  "steps": [
-    {
-      "fields": {
-        "#firstName": "Alice",
-        "#lastName": "Z"
-      }
-    },
-    {
-      "fields": {
-        "#firstName": "Alice",
-        "#lastName": "Z"
-      }
-    }
-  ]
-}
-```
+  - `page_url`
+  The URL of the form page to be autofilled.
 
+  - `steps`
+  An array of step objects. After each step, the script pauses to allow manual review or navigation before continuing.
 
-### Configuration Parameters
-
-- `page_url`
-The URL of the form page to be autofilled.
-
-- `steps`
-An array of step objects. After each step, the script pauses to allow manual review or navigation before continuing.
-
-  - `fields`
-  A collection of key-value pairs where the key is a CSS selector and the value is the text to input. An exception to this is checkboxes and radios where the value will be ignored as the presence of the field indicates a check.
-  
-
+    - `fields`
+    A collection of key-value pairs where the key is a CSS selector and the value is the text to input. An exception to this is checkboxes and radios where the value will be ignored as the presence of the field indicates a check.
